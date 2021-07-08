@@ -1,12 +1,12 @@
 # Ignore node_modules folder
-/node_modules
-/data_by_country
+node_modules/**
+data_by_country/**
 /data_by_country/Hungary
 /data_by_country/Ireland
 /hgt_cache
-/cache
+cache/**
 /osm-slope
-/oneXoneMaps
+oneXoneMaps/**
 northernPT.json
 southernPT.json
 
