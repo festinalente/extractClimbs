@@ -1,0 +1,61 @@
+html(lang="en-EU" xml:lang="en-EU")
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0')
+    meta(name="theme-color" content="#3366vv")
+    link(rel="stylesheet" href="/frontendStatic/css/master.css")
+    link(rel='stylesheet' href='https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css')
+  body
+    h1 Everesting climb finder.
+    p.
+      Please note this a prototype app for my own use I knocked together in a couple of days.
+    p.
+      It crawls OSM data, pairing nodes with altitude data, then adds data to ways on length and gradient. 
+      
+    h4 Limitations:
+    ul
+      li.
+        It currently only searches #[em southern Portugal where I live], although I have processed data for other areas. 
+      li.
+        It works to find (mostly) short climbs only, crawling OSM #[em ways]. A way might be a whole climb or section of a climb, hence it would need to crawl these
+        segements sequentially if a climb is long. Since I have found my candidate climbs already, I haven't bothered adding this refinement. 
+      li It makes a best effort at removing dirt tracks and trails.
+      li It is not exhaustive, road types, and sections of road may be miss categorized in the OSM data. 
+      li The straightness calculation is a bit buggy despite the simplicity of the calculation (possibly a data issue).
+      li It only counts climbs that climb the whole way, so a climb with a bit of descent in it will be broken at that point.
+      li Climbs are marked on the map in Orange.
+      li This is a prototype running on tiny little server and will crash if abused. 
+      
+    p.
+      The default values are near optimal for anyone aiming for the Everesting world record which I want to have a shot when I have the cash to do so.
+    p   
+      em.
+        If anyone would like to sponsor the development of this project to turn it into a fully
+        fledged sevice contact me at tomas at appyou.pro
+    h2 Enter climb constraints:    
+    #climbconstraints
+      ol
+        li
+          label(for="maxdistance") Maximum distance (km)
+          input#maxdistance(name="maximum distance" value='1')
+        li
+          label(for="mindistance") Minimum distance (km)
+          input#mindistance(name="minimum distance" value='0.5')
+        li
+          label(for="maxgradient") Maximum gradient (decimal: divide percent by 100 to get decimal)
+          input#maxgradient(name="maximum gradient" value='0.18')
+        li
+          label(for="mingradient") Minimum gradient (decimal: divide percent by 100 to get decimal)
+          input#mingradient(name="minimum gradient" value='0.14')
+        li
+          label(for="straightness") Straightness (1 equals straight, more than 1 curvy. Straight roads are rare.)
+          input#straightness(name="straightness" value='1.15')
+      button(type='submit')#submitForm submit
+    h4 Climbs meeting these constraints: 
+    em Click on a climb bellow to see it on the map.
+    .climbs  
+    .map
+  script(src="/frontendStatic/js/main.js")  
+  script(src="/frontendStatic/js/xhr.js")  
+  script(src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js')

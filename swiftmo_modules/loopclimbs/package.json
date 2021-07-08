@@ -1,0 +1,8 @@
+{
+  "name": "loopClimbs",
+  "version": "1.0.0",
+  "description": "Gets climbs by constraints",
+  "main": "loopThroughClimbs.js",
+  "license": "MIT license",
+  "author": "Tomás Swift-Metcalfe"
+}
